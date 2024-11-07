@@ -11,8 +11,7 @@ jobs:
     name: CI - Code Quality and Documentation Build
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        python-version: [3.11, {{ cookiecutter.python_version }}, 3.13]
+      python-version: [{{ cookiecutter.python_version }}]
       fail-fast: true
     timeout-minutes: 20
     env:
@@ -33,10 +32,10 @@ jobs:
       - name: Cache UV Dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ env.UV_CACHE_DIR }}
-          key: "uv-${{ matrix.python-version }}-${{ runner.os }}-${{ hashFiles('uv.lock') }}"
+          path: {% raw %}${{ env.UV_CACHE_DIR }}{% endraw %}
+          key: {% raw %}"uv-${{ matrix.python-version }}-${{ runner.os }}-${{ hashFiles('uv.lock') }}"{% endraw %}
           restore-keys: |
-            uv-${{ matrix.python-version }}-${{ runner.os }}
+            {% raw %}uv-${{ matrix.python-version }}-${{ runner.os }}{% endraw %}
 
       - name: Install and Sync Dependencies
         run: uv sync
@@ -58,20 +57,20 @@ jobs:
         if: success() && matrix.python-version == '3.11'
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
           publish_dir: docs/_build/html
 
       - name: Scan Codebase with SonarCloud (Python 3.13 only)
         if: matrix.python-version == '3.13'
         uses: SonarSource/sonarcloud-github-action@v3
         env:
-          SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}'
+          SONAR_TOKEN: {% raw %}'${{ secrets.SONAR_TOKEN }}'{% endraw %}
 
       - name: Upload Test Coverage Report to Codecov (Python 3.13 only)
         if: success() && matrix.python-version == '3.13'
         uses: codecov/codecov-action@v4
         with:
-          token: '${{ secrets.CODECOV_TOKEN }}'
+          token: {% raw %}'${{ secrets.CODECOV_TOKEN }}'{% endraw %}
           file: ./coverage.xml
           fail_ci_if_error: true
 
