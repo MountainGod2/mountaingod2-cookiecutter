@@ -4,7 +4,7 @@ description = "{{ cookiecutter.package_short_description }}"
 license = { file = "LICENSE" }
 name = "{{ cookiecutter.__package_slug }}"
 readme = "README.md"
-requires-python = "^{{ cookiecutter.python_version }}"
+requires-python = ">={{ cookiecutter.python_version }}"
 version = "{{ cookiecutter.package_version }}"
 
 [dependency-groups]
