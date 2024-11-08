@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [{{ python_version_matrix }}]
+        python-version: [python_version_matrix]
       fail-fast: true
     timeout-minutes: 20
     env:

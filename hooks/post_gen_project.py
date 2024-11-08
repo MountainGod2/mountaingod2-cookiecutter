@@ -21,7 +21,7 @@ with open(ci_path, "r") as f:
     ci_content = f.read()
 
 # Replace the placeholder for the Python version matrix
-ci_content = ci_content.replace("{{ python_version_matrix }}", ", ".join(versions))
+ci_content = ci_content.replace("python_version_matrix", ", ".join(versions))
 
 # Write the updated CI config file
 with open(ci_path, "w") as f:
