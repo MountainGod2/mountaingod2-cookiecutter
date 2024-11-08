@@ -1,5 +1,3 @@
-import os
-
 # The Python version the user selected during Cookiecutter setup
 selected_version = "{{ cookiecutter.python_version }}"
 
@@ -14,17 +12,15 @@ next_version = all_versions[selected_index + 1] if selected_index < len(all_vers
 # Construct the version matrix
 versions = [v for v in [prev_version, selected_version, next_version] if v is not None]
 
-# Now write this matrix to the CI YAML
-ci_path = os.path.join("{{cookiecutter.__package_slug}}", ".github", "workflows", "continuous-integration.yml")
-
-with open(ci_path, "r") as f:
+# Now write this matrix to the CI YAML file
+with open(".github/workflows/continuous-deployment.yml", "r") as f:
     ci_content = f.read()
 
 # Replace the placeholder for the Python version matrix
 ci_content = ci_content.replace("python_version_matrix", ", ".join(versions))
 
 # Write the updated CI config file
-with open(ci_path, "w") as f:
+with open(".github/workflows/continuous-deployment.yml", "w") as f:
     f.write(ci_content)
 
 print(f"Updated CI configuration with Python version matrix: {versions}")
