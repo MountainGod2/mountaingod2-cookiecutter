@@ -1,54 +1,30 @@
 import os
-import shutil
 
-##############################################################################
-# Utilities
-##############################################################################
+# The Python version the user selected during Cookiecutter setup
+selected_version = "{{ cookiecutter.python_version }}"
 
+# Available versions for the matrix (could be dynamically expanded later)
+all_versions = ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
-def remove(filepath):
-    if os.path.isfile(filepath):
-        os.remove(filepath)
-    elif os.path.isdir(filepath):
-        shutil.rmtree(filepath)
+# Determine the previous and next versions
+selected_index = all_versions.index(selected_version)
+prev_version = all_versions[selected_index - 1] if selected_index > 0 else None
+next_version = all_versions[selected_index + 1] if selected_index < len(all_versions) - 1 else None
 
+# Construct the version matrix
+versions = [v for v in [prev_version, selected_version, next_version] if v is not None]
 
-##############################################################################
-# Cookiecutter clean-up
-##############################################################################
+# Now write this matrix to the CI YAML
+ci_path = os.path.join("{{cookiecutter.project_slug}}", ".github", "workflows", "ci.yml")
 
-# Directive flags
-no_github_actions = "{{cookiecutter.include_github_actions}}" == "no"
-github_actions_ci = "{{cookiecutter.include_github_actions}}" == "ci"
-no_docker = "{{cookiecutter.include_docker_support}}" == "no"
-no_codeql_analysis = "{{cookiecutter.include_codeql_analysis}}" == "no"
-no_stale_issues_bot = "{{cookiecutter.include_stale_issues_bot}}" == "no"
-no_license = "{{cookiecutter.open_source_license}}" == "None"
+with open(ci_path, "r") as f:
+    ci_content = f.read()
 
-# Remove workflow files (if specified)
-if no_github_actions:
-    remove(".github/")
+# Replace the placeholder for the Python version matrix
+ci_content = ci_content.replace("{{ python_version_matrix }}", ", ".join(versions))
 
-# Remove CD workflow (if specified)
-if github_actions_ci:
-    remove(".github/workflows/continuous-deployment.yml")
+# Write the updated CI config file
+with open(ci_path, "w") as f:
+    f.write(ci_content)
 
-# Remove Docker files (if specified)
-if no_docker:
-    remove(".github/workflows/docker-image-build.yml")
-    remove("Dockerfile")
-    remove(".dockerignore")
-    remove("docker-entrypoint.sh")
-
-# Remove CodeQL analysis (if specified)
-if no_codeql_analysis:
-    remove(".github/workflows/codeql-analysis.yml")
-
-# Remove stale issues bot (if specified)
-if no_stale_issues_bot:
-    remove(".github/close-stale-issues.yml")
-
-# Remove license (if specified)
-if no_license:
-    remove("LICENSE")
-    remove("docs/license.md")
+print(f"Updated CI configuration with Python version matrix: {versions}")
