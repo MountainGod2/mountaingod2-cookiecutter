@@ -15,7 +15,7 @@ next_version = all_versions[selected_index + 1] if selected_index < len(all_vers
 versions = [v for v in [prev_version, selected_version, next_version] if v is not None]
 
 # Now write this matrix to the CI YAML
-ci_path = os.path.join("{{cookiecutter.project_slug}}", ".github", "workflows", "continous-integration.yml")
+ci_path = os.path.join("{{cookiecutter.project_slug}}", ".github", "workflows", "continuous-integration.yml")
 
 with open(ci_path, "r") as f:
     ci_content = f.read()
