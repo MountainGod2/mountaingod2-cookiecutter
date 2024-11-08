@@ -1,4 +1,4 @@
-"""{{ cookiecutter.package_name }} package."""
+"""{{ package_short_description }}"""
 
 # Read version from installed package
 from importlib.metadata import version
