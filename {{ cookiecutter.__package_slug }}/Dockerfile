@@ -1,5 +1,5 @@
-# Stage 1: Build stage using the python:3.13-alpine image
-FROM python:3.13-alpine AS builder
+# Stage 1: Build stage using the python:{{ cookiecutter.python_version }}-alpine image
+FROM python:{{ cookiecutter.python_version }}-alpine AS builder
 
 # Install necessary build dependencies for Python packages
 RUN apk add --no-cache git gcc musl-dev libffi-dev openssl-dev && \
@@ -16,11 +16,11 @@ RUN uv venv -n /app/.venv && \
     uv pip compile -n pyproject.toml -o requirements.txt && \
     uv pip sync -n requirements.txt
 
-# Stage 2: Final runtime image using the python:3.13-alpine image
-FROM python:3.13-alpine AS runtime
+# Stage 2: Final runtime image using the python:{{ cookiecutter.python_version }}-alpine image
+FROM python:{{ cookiecutter.python_version }}-alpine AS runtime
 
 LABEL org.opencontainers.image.description="{{ cookiecutter.package_short_description }}"
-LABEL org.opencontainers.image.licenses=MIT
+LABEL org.opencontainers.image.licenses="{{ cookiecutter.open_source_license }}"
 
 # Configure environment variables for the virtual environment
 ENV VIRTUAL_ENV=/app/.venv
