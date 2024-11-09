@@ -60,6 +60,18 @@ lint.pydocstyle.convention = "google"
 lint.select = ["ALL"]
 lint.unfixable = []
 
+[tool.pylint]
+fail-under = 8.0
+ignore-paths = [".venv", "build", "dist", "docs", "examples", "out", "tests"]
+typecheck.signature-mutators = [
+  'click.decorators.argument',
+  'click.decorators.confirmation_option',
+  'click.decorators.help_option',
+  'click.decorators.option',
+  'click.decorators.pass_context',
+  'click.decorators.version_option',
+]
+
 [tool.mypy]
 disable_error_code = "import-untyped"
 exclude = ["build", "out"]
