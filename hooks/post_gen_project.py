@@ -1,4 +1,4 @@
-"""Initialize git repository and sync dependencies"""
+# Initialize git repository and sync dependencies
 import subprocess
 
 # Create virtual environment
@@ -19,20 +19,5 @@ subprocess.run(["git", "add", "."])
 # Rename the default branch to main
 subprocess.run(["git", "branch", "-m", "main"])
 
-# Create gh-pages branch
-subprocess.run(["git", "checkout", "--orphan", "gh-pages"])
-
-# Remove all files from gh-pages branch
-subprocess.run(["git", "rm", "-rf", "."])
-
-# Commit changes to gh-pages branch
-subprocess.run(["git", "commit", "--allow-empty", "-m", "Initial commit"])
-
-# Switch back to main branch
-subprocess.run(["git", "checkout", "main"])
-
-# Commit changes to main branch
-subprocess.run(["git", "commit", "-m", "Initial commit"])
-
-# Print success message
-print("Initialized git repository and synced dependencies.")
+# Commit all files
+subprocess.run(["git", "commit", "-m", "chore: Initial commit"])
