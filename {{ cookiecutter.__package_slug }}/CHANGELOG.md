@@ -1,7 +1,8 @@
-# Changelog
+# CHANGELOG
 
-<!--next-version-placeholder-->
 
-## v{{ cookiecutter.package_version }} ({% now 'local', '%d/%m/%Y' %})
+## v{{ cookiecutter.package_version }} ({% now 'local', '%Y-%m-%d' %})
 
-- First release of `{{ cookiecutter.__package_slug }}`!
+### Features
+
+* feat: Initial commit of `{{ cookiecutter.__package_slug }}`
