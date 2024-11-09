@@ -12,7 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: python_version_matrix
+        python-version: [
+          {% set all_versions = ["3.9", "3.10", "3.11", "3.12", "3.13"] %}
+          {% set selected_version = cookiecutter.python_version %}
+          {% set selected_index = all_versions.index(selected_version) %}
+          {% if selected_index > 0 %}
+          "{{ all_versions[selected_index - 1] }}",
+          {% endif %}
+          "{{ selected_version }}",
+          {% if selected_index < (all_versions | length - 1) %}
+          "{{ all_versions[selected_index + 1] }}"
+          {% endif %}
+        ]
       fail-fast: true
     timeout-minutes: 20
     env:
