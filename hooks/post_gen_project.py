@@ -19,7 +19,7 @@ subprocess.run(["git", "init"])
 subprocess.run(["git", "add", "."])
 
 # Rename the default branch to main
-subprocess.run(["git" "branch" "-m" "main"])
+subprocess.run(["git", "branch", "-m", "main"])
 
 # Commit all files
 subprocess.run(["git", "commit", "-m", "chore: Initial commit"])
