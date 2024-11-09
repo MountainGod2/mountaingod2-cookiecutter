@@ -10,5 +10,5 @@ __description__ = "{{ cookiecutter.package_short_description }}"
 
 
 # Public objects of the package (if any)
-__all__ = []
+__all__: list[str] = []
 """list: List of public objects of the {{ cookiecutter.package_name }} package."""
