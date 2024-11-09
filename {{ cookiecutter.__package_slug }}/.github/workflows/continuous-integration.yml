@@ -17,6 +17,8 @@ jobs:
     timeout-minutes: 20
     env:
       UV_CACHE_DIR: /tmp/uv-cache-{% raw %}${{ matrix.python-version }}{% endraw %}
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
