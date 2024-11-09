@@ -9,9 +9,6 @@ subprocess.run(["uv", "venv", "--python={{ cookiecutter.python_version }}"])
 # Sync dependencies
 subprocess.run(["uv", "sync"])
 
-# Change directory to the project directory
-os.chdir("{{ cookiecutter.__package_slug }}")
-
 # Run ruff lint
 subprocess.run(["uv", "run", "ruff", "check", "--fix"])
 
