@@ -4,13 +4,13 @@ import os
 import subprocess
 
 # Create virtual environment
-subprocess.run(["uv", "venv", "--python={{cookiecutter.python_version}}"])
+subprocess.run(["uv", "venv", "--python={{ cookiecutter.python_version }}"])
 
 # Sync dependencies
 subprocess.run(["uv", "sync"])
 
 # Change directory to the project directory
-os.chdir("{{cookiecutter.project_slug}}")
+os.chdir("{{ cookiecutter.__package_slug }}")
 
 # Run ruff lint
 subprocess.run(["uv", "run", "ruff", "check", "--fix"])
