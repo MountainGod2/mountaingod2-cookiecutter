@@ -18,7 +18,7 @@ dev = [
   "python-semantic-release",
   "ruff",
 ]
-docs = ["myst-parser", "sphinx-copybutton", "sphinx-prompt", "sphinx-rtd-theme"]
+docs = ["myst-nb", "sphinx-autoapi", "sphinx-rtd-theme"]
 
 [build-system]
 build-backend = "hatchling.build"
