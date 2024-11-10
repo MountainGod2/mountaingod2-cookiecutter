@@ -32,8 +32,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/{{ cookiecutter.author_name|lower }}{{ cookiecutter.__package_slug }}
-            docker.io/{{ cookiecutter.author_name|lower }}{{ cookiecutter.__package_slug }}
+            ghcr.io/{{ cookiecutter.author_name|lower }}/{{ cookiecutter.__package_slug }}
+            docker.io/{{ cookiecutter.author_name|lower }}/{{ cookiecutter.__package_slug }}
           tags: |
             {% raw %}type=schedule,pattern=nightly{% endraw %}
             {% raw %}type=ref,event=branch{% endraw %}
