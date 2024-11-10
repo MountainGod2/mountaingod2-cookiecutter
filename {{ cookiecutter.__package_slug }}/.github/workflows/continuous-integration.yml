@@ -63,19 +63,19 @@ jobs:
           github_token: '{% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}'
           publish_dir: docs/_build/html
 
-      - name: Scan Codebase with SonarCloud (Python {{ cookiecutter.python_version }} only)
-        if: matrix.python-version == '{{ cookiecutter.python_version }}'
-        uses: SonarSource/sonarcloud-github-action@v3
-        env:
-          SONAR_TOKEN: '{% raw %}${{ secrets.SONAR_TOKEN }}{% endraw %}'
+      # - name: Scan Codebase with SonarCloud (Python {{ cookiecutter.python_version }} only)
+      #   if: matrix.python-version == '{{ cookiecutter.python_version }}'
+      #   uses: SonarSource/sonarcloud-github-action@v3
+      #   env:
+      #     SONAR_TOKEN: '{% raw %}${{ secrets.SONAR_TOKEN }}{% endraw %}'
 
-      - name: Upload Test Coverage Report to Codecov (Python {{ cookiecutter.python_version }} only)
-        if: success() && matrix.python-version == '{{ cookiecutter.python_version }}'
-        uses: codecov/codecov-action@v4
-        with:
-          token: '{% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}'
-          file: ./coverage.xml
-          fail_ci_if_error: true
+      # - name: Upload Test Coverage Report to Codecov (Python {{ cookiecutter.python_version }} only)
+      #   if: success() && matrix.python-version == '{{ cookiecutter.python_version }}'
+      #   uses: codecov/codecov-action@v4
+      #   with:
+      #     token: '{% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}'
+      #     file: ./coverage.xml
+      #     fail_ci_if_error: true
 
       - name: Minimize UV Cache
         if: always()

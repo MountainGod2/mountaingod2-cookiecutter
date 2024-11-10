@@ -48,17 +48,17 @@ jobs:
           ssh_private_signing_key: '{% raw %}${{ secrets.GIT_COMMIT_SSH_PRIV_KEY }}{% endraw %}'
           ssh_public_signing_key: '{% raw %}${{ secrets.GIT_COMMIT_SSH_PUB_KEY }}{% endraw %}'
 
-      - name: Publish to TestPyPI
-        if: steps.release.outputs.released == 'true'
-        uses: pypa/gh-action-pypi-publish@v1.12.2
-        with:
-          repository-url: 'https://test.pypi.org/legacy/'
-          attestations: false
+      # - name: Publish to TestPyPI
+      #   if: steps.release.outputs.released == 'true'
+      #   uses: pypa/gh-action-pypi-publish@v1.12.2
+      #   with:
+      #     repository-url: 'https://test.pypi.org/legacy/'
+      #     attestations: false
 
-      - name: Test Install from TestPyPI
-        if: steps.release.outputs.released == 'true'
-        run: uv pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple {{ cookiecutter.__package_slug }}
+      # - name: Test Install from TestPyPI
+      #   if: steps.release.outputs.released == 'true'
+      #   run: uv pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple {{ cookiecutter.__package_slug }}
 
-      - name: Publish to PyPI
-        if: steps.release.outputs.released == 'true'
-        uses: pypa/gh-action-pypi-publish@v1.12.2
+      # - name: Publish to PyPI
+      #   if: steps.release.outputs.released == 'true'
+      #   uses: pypa/gh-action-pypi-publish@v1.12.2
