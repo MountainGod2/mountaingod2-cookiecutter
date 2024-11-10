@@ -5,4 +5,4 @@
 
 ### Features
 
-* feat: Initial commit of `{{ cookiecutter.__package_slug }}`
+- Initial commit of {{ cookiecutter.__package_slug }}
