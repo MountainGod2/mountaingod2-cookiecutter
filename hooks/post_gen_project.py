@@ -35,4 +35,4 @@ subprocess.run(["git", "add", "."])
 subprocess.run(["git", "branch", "-m", "main"])
 
 # Commit all files
-subprocess.run(["git", "commit", "-m", "feat: Initial commit of {{cookie.cutter.__package_slug }}"])
+subprocess.run(["git", "commit", "-m", "feat: Initial commit of {{cookiecutter.__package_slug }}"])
