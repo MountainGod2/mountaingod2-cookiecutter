@@ -1,5 +1,7 @@
 [project]
-authors = [{ name = "{{ cookiecutter.author_name }}" }]
+authors = [
+  { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
+]
 description = "{{ cookiecutter.package_short_description }}"
 license = { file = "LICENSE" }
 name = "{{ cookiecutter.__package_slug }}"

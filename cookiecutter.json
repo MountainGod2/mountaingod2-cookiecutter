@@ -1,10 +1,25 @@
 {
   "author_name": "MountainGod2",
+  "_author_name_comment": "Name of the package author or creator.",
+  
+  "author_email": "example@example.com",
+  "_author_email_comment": "Email of the author (optional, but recommended for package metadata).",
+  
   "package_name": "my-pkg",
+  "_package_name_comment": "Name of the package. Use a short, descriptive name.",
+  
   "__package_slug": "{{ cookiecutter.package_name|lower|replace(' ', '_')|replace('-', '_') }}",
+  "_package_slug_comment": "Auto-generated package slug based on the package name.",
+  
   "package_short_description": "A package for doing great things!",
+  "_package_short_description_comment": "A brief description of the package's purpose.",
+  
   "package_version": "0.1.0",
+  "_package_version_comment": "Initial version of the package.",
+  
   "python_version": "3.12",
+  "_python_version_comment": "Minimum Python version required for the package. E.g., '3.9', '3.11'.",
+
   "open_source_license": [
     "MIT",
     "Apache License 2.0",
@@ -12,5 +27,27 @@
     "CC0 v1.0 Universal",
     "BSD 3-Clause",
     "Proprietary"
-  ]
+  ],
+  "_open_source_license_comment": "Select an open-source license or 'Proprietary' if not open-source.",
+
+  "use_docker": "y",
+  "_use_docker_comment": "Include Docker configuration? (y/n)",
+  
+  "use_ci_cd": "y",
+  "_use_ci_cd_comment": "Include CI/CD workflows in the generated template? (y/n)",
+  
+  "include_github_actions": "y",
+  "_include_github_actions_comment": "Include GitHub Actions workflows? (y/n)",
+
+  "use_pre_commit_hooks": "y",
+  "_use_pre_commit_hooks_comment": "Add pre-commit hooks configuration? (y/n)",
+
+  "use_documentation": "y",
+  "_use_documentation_comment": "Include Sphinx documentation setup? (y/n)",
+
+  "add_code_of_conduct": "y",
+  "_add_code_of_conduct_comment": "Include a Code of Conduct file? (y/n)",
+
+  "template_version": "1.0.0",
+  "_template_version_comment": "Version of this cookiecutter template."
 }
