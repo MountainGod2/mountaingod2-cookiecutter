@@ -66,7 +66,7 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
         with:
-          push: matrix.os == 'ubuntu-20.04' && matrix.platform == 'linux/amd64'
+          push: true
           tags: '{% raw %}${{ steps.meta.outputs.tags }}{% endraw %}'
           labels: '{% raw %}${{ steps.meta.outputs.labels }}{% endraw %}'
           platforms: linux/amd64,linux/arm64
